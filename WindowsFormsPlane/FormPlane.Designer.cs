@@ -34,6 +34,7 @@
             this.buttonUp = new System.Windows.Forms.Button();
             this.buttonLeft = new System.Windows.Forms.Button();
             this.pictureBoxPlane = new System.Windows.Forms.PictureBox();
+            this.buttonCreatWarplane = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlane)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,7 +43,7 @@
             this.buttonCreat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonCreat.Location = new System.Drawing.Point(12, 12);
             this.buttonCreat.Name = "buttonCreat";
-            this.buttonCreat.Size = new System.Drawing.Size(95, 32);
+            this.buttonCreat.Size = new System.Drawing.Size(110, 35);
             this.buttonCreat.TabIndex = 1;
             this.buttonCreat.Text = "Создать";
             this.buttonCreat.UseVisualStyleBackColor = true;
@@ -105,11 +106,23 @@
             this.pictureBoxPlane.TabIndex = 0;
             this.pictureBoxPlane.TabStop = false;
             // 
+            // buttonCreatWarplane
+            // 
+            this.buttonCreatWarplane.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCreatWarplane.Location = new System.Drawing.Point(156, 12);
+            this.buttonCreatWarplane.Name = "buttonCreatWarplane";
+            this.buttonCreatWarplane.Size = new System.Drawing.Size(213, 35);
+            this.buttonCreatWarplane.TabIndex = 2;
+            this.buttonCreatWarplane.Text = "Создать военный самолёт";
+            this.buttonCreatWarplane.UseVisualStyleBackColor = true;
+            this.buttonCreatWarplane.Click += new System.EventHandler(this.buttonCreatWarplane_Click);
+            // 
             // FormPlane
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.buttonCreatWarplane);
             this.Controls.Add(this.buttonRight);
             this.Controls.Add(this.buttonDown);
             this.Controls.Add(this.buttonUp);
@@ -131,6 +144,7 @@
         private System.Windows.Forms.Button buttonUp;
         private System.Windows.Forms.Button buttonDown;
         private System.Windows.Forms.Button buttonRight;
+        private System.Windows.Forms.Button buttonCreatWarplane;
     }
 }
 
