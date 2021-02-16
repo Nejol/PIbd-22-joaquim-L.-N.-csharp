@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             this.pictureBoxAeroplane = new System.Windows.Forms.PictureBox();
-            this.buttonLandPlane = new System.Windows.Forms.Button();
-            this.buttonLandWarplane = new System.Windows.Forms.Button();
+            this.buttonSetPlane = new System.Windows.Forms.Button();
             this.groupBoxPlane = new System.Windows.Forms.GroupBox();
 
             this.buttonTakePlane = new System.Windows.Forms.Button();
@@ -53,25 +52,15 @@
             this.pictureBoxAeroplane.TabIndex = 0;
             this.pictureBoxAeroplane.TabStop = false;
             // 
-            // buttonLandPlane
+            // buttonSetPlane
             // 
-            this.buttonLandPlane.Location = new System.Drawing.Point(1108, 426);
-            this.buttonLandPlane.Name = "buttonLandPlane";
-            this.buttonLandPlane.Size = new System.Drawing.Size(190, 36);
-            this.buttonLandPlane.TabIndex = 1;
-            this.buttonLandPlane.Text = "Посадить самолёт";
-            this.buttonLandPlane.UseVisualStyleBackColor = true;
-            this.buttonLandPlane.Click += new System.EventHandler(this.buttonLandPlane_Click);
-            // 
-            // buttonLandWarplane
-            // 
-            this.buttonLandWarplane.Location = new System.Drawing.Point(1108, 492);
-            this.buttonLandWarplane.Name = "buttonLandWarplane";
-            this.buttonLandWarplane.Size = new System.Drawing.Size(190, 41);
-            this.buttonLandWarplane.TabIndex = 2;
-            this.buttonLandWarplane.Text = "Посадить Аэроплан";
-            this.buttonLandWarplane.UseVisualStyleBackColor = true;
-            this.buttonLandWarplane.Click += new System.EventHandler(this.buttonLandWarplane_Click);
+            this.buttonSetPlane.Location = new System.Drawing.Point(1108, 466);
+            this.buttonSetPlane.Name = "buttonSetPlane";
+            this.buttonSetPlane.Size = new System.Drawing.Size(190, 36);
+            this.buttonSetPlane.TabIndex = 1;
+            this.buttonSetPlane.Text = "Посадить самолёт";
+            this.buttonSetPlane.UseVisualStyleBackColor = true;
+            this.buttonSetPlane.Click += new System.EventHandler(this.buttonSetPlane_Click);
             // 
             // groupBoxPlane
             // 
@@ -131,7 +120,7 @@
             // 
             this.buttonAddAeroplane.Location = new System.Drawing.Point(1108, 122);
             this.buttonAddAeroplane.Name = "buttonAddAeroplane";
-            this.buttonAddAeroplane.Size = new System.Drawing.Size(190, 29);
+            this.buttonAddAeroplane.Size = new System.Drawing.Size(190, 36);
             this.buttonAddAeroplane.TabIndex = 6;
             this.buttonAddAeroplane.Text = "Добавить аэроплан";
             this.buttonAddAeroplane.UseVisualStyleBackColor = true;
@@ -140,18 +129,18 @@
             // listBoxAeroplanes
             // 
             this.listBoxAeroplanes.FormattingEnabled = true;
-            this.listBoxAeroplanes.Location = new System.Drawing.Point(1108, 211);
+            this.listBoxAeroplanes.Location = new System.Drawing.Point(1108, 172);
             this.listBoxAeroplanes.Name = "listBoxAeroplanes";
-            this.listBoxAeroplanes.Size = new System.Drawing.Size(190, 95);
+            this.listBoxAeroplanes.Size = new System.Drawing.Size(190, 173);
             this.listBoxAeroplanes.TabIndex = 7;
             this.listBoxAeroplanes.Click += new System.EventHandler(this.listBoxAeroplanes_SelectedIndexChanged);
             this.listBoxAeroplanes.SelectedIndexChanged += new System.EventHandler(this.listBoxAeroplanes_SelectedIndexChanged);
             // 
             // buttonDeleteAeroplane
             // 
-            this.buttonDeleteAeroplane.Location = new System.Drawing.Point(1108, 343);
+            this.buttonDeleteAeroplane.Location = new System.Drawing.Point(1108, 367);
             this.buttonDeleteAeroplane.Name = "buttonDeleteAeroplane";
-            this.buttonDeleteAeroplane.Size = new System.Drawing.Size(190, 23);
+            this.buttonDeleteAeroplane.Size = new System.Drawing.Size(190, 36);
             this.buttonDeleteAeroplane.TabIndex = 8;
             this.buttonDeleteAeroplane.Text = "Удалить аэроплан";
             this.buttonDeleteAeroplane.UseVisualStyleBackColor = true;
@@ -168,8 +157,7 @@
             this.Controls.Add(this.textBoxNewLevelName);
             this.Controls.Add(this.labelPark);
             this.Controls.Add(this.groupBoxPlane);
-            this.Controls.Add(this.buttonLandWarplane);
-            this.Controls.Add(this.buttonLandPlane);
+            this.Controls.Add(this.buttonSetPlane);
             this.Controls.Add(this.pictureBoxAeroplane);
             this.Name = "FormAeroplane";
             this.Text = "FormAeroplane";
@@ -184,8 +172,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBoxAeroplane;
-        private System.Windows.Forms.Button buttonLandPlane;
-        private System.Windows.Forms.Button buttonLandWarplane;
+        private System.Windows.Forms.Button buttonSetPlane;
         private System.Windows.Forms.GroupBox groupBoxPlane;
         private System.Windows.Forms.Button buttonTakePlane;
         private System.Windows.Forms.MaskedTextBox maskedTextBox;

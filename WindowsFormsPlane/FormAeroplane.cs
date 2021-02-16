@@ -76,50 +76,6 @@ namespace WindowsFormsPlane
             }
         }
 
-        private void buttonLandPlane_Click(object sender, EventArgs e)
-        {
-            if (listBoxAeroplanes.SelectedIndex > -1)
-            {
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    var plane = new Plane(100, 1000, dialog.Color);
-                    if (aeroplaneCollection[listBoxAeroplanes.SelectedItem.ToString()] + plane)
-                    {
-                        Draw();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Аэроплан переполнен");
-                    }
-                }
-            }
-        }
-
-        private void buttonLandWarplane_Click(object sender, EventArgs e)
-        {
-            if (listBoxAeroplanes.SelectedIndex > -1)
-            {
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    ColorDialog dialogDop = new ColorDialog();
-                    if (dialogDop.ShowDialog() == DialogResult.OK)
-                    {
-                        var aircraft = new Warplane(100, 1000, dialog.Color,dialogDop.Color, true, true);
-                        if (aeroplaneCollection[listBoxAeroplanes.SelectedItem.ToString()] + aircraft)
-                        {
-                            Draw();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Парковка переполнена");
-                        }
-                    }
-                }
-            }
-        }
-
         private void buttonTakePlane_Click(object sender, EventArgs e)
         {
             if (listBoxAeroplanes.SelectedIndex > -1 && maskedTextBox.Text != "")
@@ -138,6 +94,28 @@ namespace WindowsFormsPlane
         private void listBoxAeroplanes_SelectedIndexChanged(object sender, EventArgs e)
         {
             Draw();
+        }
+
+        private void buttonSetPlane_Click(object sender, EventArgs e)
+        {
+            var formPlaneConfig = new FormPlaneConfig();
+            formPlaneConfig.AddEvent(AddPlane);
+            formPlaneConfig.Show();
+        }
+
+        private void AddPlane(Vehicle plane)
+        {
+            if (plane != null && listBoxAeroplanes.SelectedIndex > -1)
+            {
+                if ((aeroplaneCollection[listBoxAeroplanes.SelectedItem.ToString()]) + plane)
+                {
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Самолёт не удалось посадить");
+                }
+            }
         }
     }
 }
