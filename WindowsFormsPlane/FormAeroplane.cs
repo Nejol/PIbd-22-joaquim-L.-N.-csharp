@@ -13,6 +13,7 @@ namespace WindowsFormsPlane
     public partial class FormAeroplane : Form
     {
         private readonly AeroplaneCollection aeroplaneCollection;
+
         public FormAeroplane()
         {
             InitializeComponent();
@@ -115,6 +116,39 @@ namespace WindowsFormsPlane
                     MessageBox.Show("Самолёт не удалось посадить");
                 }
             }
+        }
+
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (aeroplaneCollection.SaveData(saveFileDialog.FileName))
+                {
+                    MessageBox.Show("Сохранение прошло успешно", "Результат",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Не сохранилось", "Результат",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (aeroplaneCollection.LoadData(openFileDialog.FileName))
+                {
+                    MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    ReloadLevels();
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Не загрузили", "Результат", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                }
+            }
+
         }
     }
 }
