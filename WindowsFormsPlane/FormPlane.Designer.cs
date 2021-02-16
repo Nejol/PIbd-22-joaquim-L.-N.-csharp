@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-
+          
             this.buttonRight = new System.Windows.Forms.Button();
             this.buttonDown = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
             this.buttonLeft = new System.Windows.Forms.Button();
             this.pictureBoxPlane = new System.Windows.Forms.PictureBox();
-
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlane)).BeginInit();
             this.SuspendLayout();
             // 

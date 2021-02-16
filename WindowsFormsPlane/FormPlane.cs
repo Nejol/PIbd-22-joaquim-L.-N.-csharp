@@ -19,13 +19,12 @@ namespace WindowsFormsPlane
             InitializeComponent();
         }
 
-
         public void SetPlane(ITransport plane)
         {
             this.plane = plane;
             Draw();
         }
-        
+
         private void Draw()
         {
             Bitmap bmp = new Bitmap(pictureBoxPlane.Width, pictureBoxPlane.Height);
@@ -34,7 +33,6 @@ namespace WindowsFormsPlane
             pictureBoxPlane.Image = bmp;
         }
 
-
         private void buttonMove_Click(object sender, EventArgs e)
         {
             //получаем имя кнопки
@@ -42,7 +40,6 @@ namespace WindowsFormsPlane
             switch (name)
             {
                 case "buttonUp":
-
                     plane?.MoveTransport(Direction.Up);
                     break;
                 case "buttonDown":

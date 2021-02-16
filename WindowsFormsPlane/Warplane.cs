@@ -23,6 +23,7 @@ namespace WindowsFormsPlane
             Foguete = foguete;
         }
 
+
         public override void DrawTransport(Graphics g)
         {
             Pen pen = new Pen(Color.Silver);
