@@ -12,6 +12,7 @@ namespace WindowsFormsPlane
 {
     public partial class FormAeroplane : Form
     {
+
         private readonly AeroplaneCollection aeroplaneCollection;
         public FormAeroplane()
         {

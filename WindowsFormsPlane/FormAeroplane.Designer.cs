@@ -32,6 +32,7 @@
             this.buttonLandPlane = new System.Windows.Forms.Button();
             this.buttonLandWarplane = new System.Windows.Forms.Button();
             this.groupBoxPlane = new System.Windows.Forms.GroupBox();
+
             this.buttonTakePlane = new System.Windows.Forms.Button();
             this.maskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.labelPlace = new System.Windows.Forms.Label();
@@ -194,5 +195,6 @@
         private System.Windows.Forms.Button buttonAddAeroplane;
         private System.Windows.Forms.ListBox listBoxAeroplanes;
         private System.Windows.Forms.Button buttonDeleteAeroplane;
+
     }
 }

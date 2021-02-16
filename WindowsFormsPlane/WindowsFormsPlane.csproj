@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+
     <Compile Include="Aeroplane.cs" />
     <Compile Include="AeroplaneCollection.cs" />
     <Compile Include="FormAeroplane.cs">
@@ -67,9 +68,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Warplane.cs" />
+
     <EmbeddedResource Include="FormAeroplane.resx">
       <DependentUpon>FormAeroplane.cs</DependentUpon>
     </EmbeddedResource>
+  
     <EmbeddedResource Include="FormPlane.resx">
       <DependentUpon>FormPlane.cs</DependentUpon>
     </EmbeddedResource>

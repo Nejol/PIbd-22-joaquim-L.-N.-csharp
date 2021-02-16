@@ -14,7 +14,7 @@ namespace WindowsFormsPlane
         public bool Missele { private set; get; }
 
         public bool Foguete{ private set; get; }
-       
+
         public Warplane(int maxSpeed, float weight, Color mainColor, Color dopColor, bool missele, bool foguete) :
             base(maxSpeed, weight, mainColor, 100, 60)
         {

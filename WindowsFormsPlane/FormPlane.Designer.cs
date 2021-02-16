@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+          
             this.buttonRight = new System.Windows.Forms.Button();
             this.buttonDown = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
