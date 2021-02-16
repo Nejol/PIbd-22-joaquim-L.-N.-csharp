@@ -15,6 +15,7 @@ namespace WindowsFormsPlane
 
         public bool Foguete{ private set; get; }
        
+
         public Warplane(int maxSpeed, float weight, Color mainColor, Color dopColor, bool missele, bool foguete) :
             base(maxSpeed, weight, mainColor, 100, 60)
         {
@@ -36,7 +37,6 @@ namespace WindowsFormsPlane
                 Foguete = Convert.ToBoolean(strs[5]);
             }
         }
-
 
         public override void DrawTransport(Graphics g)
         {

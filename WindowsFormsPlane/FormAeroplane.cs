@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,12 +14,14 @@ namespace WindowsFormsPlane
     public partial class FormAeroplane : Form
     {
         private readonly AeroplaneCollection aeroplaneCollection;
+        
+        private readonly Logger logger;
 
         public FormAeroplane()
         {
             InitializeComponent();
             aeroplaneCollection = new AeroplaneCollection(pictureBoxAeroplane.Width, pictureBoxAeroplane.Height);
-            Draw();
+            logger = LogManager.GetCurrentClassLogger();
         }
 
         private void ReloadLevels()
@@ -55,8 +58,10 @@ namespace WindowsFormsPlane
             if (string.IsNullOrEmpty(textBoxNewLevelName.Text))
             {
                 MessageBox.Show("Введите название аэроплана", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                logger.Warn("Не введено название аэроplane");
                 return;
             }
+            logger.Info($"Добавили аэроplane {textBoxNewLevelName.Text}");
             aeroplaneCollection.AddAeroplane(textBoxNewLevelName.Text);
             textBoxNewLevelName.Text = "";
             ReloadLevels();
@@ -69,6 +74,7 @@ namespace WindowsFormsPlane
                 if (MessageBox.Show($"Удалить аэроплан {listBoxAeroplanes.SelectedItem.ToString()}?",
                     "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    logger.Info($"Удалили аэроplane{ listBoxAeroplanes.SelectedItem.ToString()}");
                     aeroplaneCollection.DelAeroplane(listBoxAeroplanes.Text);
                     textBoxNewLevelName.Text = "";
                     ReloadLevels();
@@ -80,19 +86,35 @@ namespace WindowsFormsPlane
         {
             if (listBoxAeroplanes.SelectedIndex > -1 && maskedTextBox.Text != "")
             {
-                var plane = aeroplaneCollection[listBoxAeroplanes.SelectedItem.ToString()] - Convert.ToInt32(maskedTextBox.Text);
-                if (plane != null)
+                try
                 {
-                    FormPlane form = new FormPlane();
-                    form.SetPlane(plane);
-                    form.ShowDialog();
+                    var plane = aeroplaneCollection[listBoxAeroplanes.SelectedItem.ToString()] - Convert.ToInt32(maskedTextBox.Text);
+                    if (plane != null)
+                    {
+                        FormPlane form = new FormPlane();
+                        form.SetPlane(plane);
+                        form.ShowDialog();
+                        logger.Info($"Изъят самолёт {plane} с места{ maskedTextBox.Text}");
+                        Draw();
+                    }
                 }
-                Draw();
+                catch (AeroplaneNotFoundException ex)
+                {
+                    MessageBox.Show(ex.Message, "Не найдено", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn("Не найдено");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn("Неизвестная ошибка");
+                }
+
             }
         }
 
         private void listBoxAeroplanes_SelectedIndexChanged(object sender, EventArgs e)
         {
+            logger.Info($"Перешли на аэроplane { listBoxAeroplanes.SelectedItem.ToString()}");
             Draw();
         }
 
@@ -107,13 +129,29 @@ namespace WindowsFormsPlane
         {
             if (plane != null && listBoxAeroplanes.SelectedIndex > -1)
             {
-                if ((aeroplaneCollection[listBoxAeroplanes.SelectedItem.ToString()]) + plane)
+                try
                 {
+                    if ((aeroplaneCollection[listBoxAeroplanes.SelectedItem.ToString()]) + plane)
+                    {
+                        Draw();
+                        logger.Info($"Добавлен самолёт {plane}");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Самолёт не удалось посадить");
+                        logger.Warn("Самолёт не удалось посадить");
+                    }
                     Draw();
                 }
-                else
+                catch (AeroplaneOverflowException ex)
                 {
-                    MessageBox.Show("Самолёт не удалось посадить");
+                    MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn("Переполнение");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn("Неизвестная ошибка");
                 }
             }
         }
@@ -122,13 +160,16 @@ namespace WindowsFormsPlane
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (aeroplaneCollection.SaveData(saveFileDialog.FileName))
+                try
                 {
-                    MessageBox.Show("Сохранение прошло успешно", "Результат",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    aeroplaneCollection.SaveData(saveFileDialog.FileName);
+                    MessageBox.Show("Сохранение прошло успешно", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    logger.Info("Сохранено в файл " + saveFileDialog.FileName);
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Не сохранилось", "Результат",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn("Неизвестная ошибка при сохранении");
                 }
             }
         }
@@ -137,18 +178,20 @@ namespace WindowsFormsPlane
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (aeroplaneCollection.LoadData(openFileDialog.FileName))
+                try
                 {
-                    MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    aeroplaneCollection.LoadData(openFileDialog.FileName);
+                    MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    logger.Info("Загружено из файла " + openFileDialog.FileName);
                     ReloadLevels();
                     Draw();
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Не загрузили", "Результат", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка при загрузки", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn("Неизвестная ошибка при загрузки");
                 }
             }
-
         }
     }
 }
