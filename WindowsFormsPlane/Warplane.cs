@@ -63,5 +63,10 @@ namespace WindowsFormsPlane
             g.DrawRectangle(pen, _startPosX + 20, _startPosY + 50, 110, 20);
             g.FillRectangle(dopBrush, _startPosX + 20, _startPosY + 50, 110, 20);
         }
+
+        public void SetDopColor(Color color)
+        {
+            DopColor = color;
+        }
     }
 }

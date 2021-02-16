@@ -9,7 +9,9 @@ namespace WindowsFormsPlane
 {
     public class Aeroplane<T> where T : class, ITransport
     {
-        private readonly T[] _places;
+        private readonly List<T> _places;
+
+        private readonly int _maxCount;
 
         private readonly int pictureWidth;
 
@@ -23,42 +25,41 @@ namespace WindowsFormsPlane
         {
             int width = picWidth / _placeSizeWidth;
             int height = picHeight / _placeSizeHeight;
-            _places = new T[width * height];
+            _places = new List<T>();
+            _maxCount = width * height;
             pictureWidth = picWidth;
             pictureHeight = picHeight;
         }
 
         public static bool operator +(Aeroplane<T> a, T plane)
         {
-            for (int i = 0; i < a._places.Length; i++)
+            if (a._places.Count >= a._maxCount)
             {
-                if (a._places[i] == null)
-                {
-                    plane.SetPosition(10 + a._placeSizeWidth * (int)(i / (int)(a.pictureHeight / a._placeSizeHeight)), 30 + a._placeSizeHeight * (int)(i % (int)(a.pictureHeight / a._placeSizeHeight)), a.pictureWidth, a.pictureHeight);
-                    a._places[i] = plane;
-                    return true;
-                }
+                return false;
             }
-            return false;
+            a._places.Add(plane);
+            return true;
         }
 
         public static T operator -(Aeroplane<T> a, int index)
         {
-            if ((index < a._places.Length) && (index >= 0))
+            if (index < -1 || index > a._places.Count)
             {
-                T plane = a._places[index];
-                a._places[index] = null;
-                return plane;
+                return null;
             }
-            return null;
+            T plane = a._places[index];
+            a._places.RemoveAt(index);
+            return plane;
         }
 
         public void Draw(Graphics g)
         {
             DrawMarking(g);
-            for (int i = 0; i < _places.Length; i++)
+            for (int i = 0; i < _places.Count; ++i)
             {
-                _places[i]?.DrawTransport(g);
+                _places[i].SetPosition(5 + i / 5 * _placeSizeWidth + 5, i % 5 *
+                _placeSizeHeight + 30, pictureWidth, pictureHeight);
+                _places[i].DrawTransport(g);
             }
         }
 
@@ -70,7 +71,7 @@ namespace WindowsFormsPlane
                 for (int j = 0; j < pictureHeight / _placeSizeHeight + 1; ++j)
                 {//линия рамзетки места
                     g.DrawLine(pen, i * _placeSizeWidth, j * _placeSizeHeight, i *
-                   _placeSizeWidth + _placeSizeWidth / 2, j * _placeSizeHeight);
+                    _placeSizeWidth + _placeSizeWidth / 2, j * _placeSizeHeight);
                 }
                 g.DrawLine(pen, i * _placeSizeWidth, 0, i * _placeSizeWidth,
                (pictureHeight / _placeSizeHeight) * _placeSizeHeight);

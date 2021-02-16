@@ -54,6 +54,12 @@
     <Compile Include="FormAeroplane.Designer.cs">
       <DependentUpon>FormAeroplane.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPlaneConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPlaneConfig.Designer.cs">
+      <DependentUpon>FormPlaneConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vehicle.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="FormPlane.cs">
@@ -72,6 +78,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPlane.resx">
       <DependentUpon>FormPlane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPlaneConfig.resx">
+      <DependentUpon>FormPlaneConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
