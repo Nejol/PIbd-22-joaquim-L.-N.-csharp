@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -7,7 +8,9 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsPlane
 {
-    public class Aeroplane<T> where T : class, ITransport
+
+    public class Aeroplane<T> : IEnumerator<T>, IEnumerable<T> where T : class, ITransport
+    
     {
         private readonly List<T> _places;
 
@@ -21,6 +24,12 @@ namespace WindowsFormsPlane
 
         private readonly int _placeSizeHeight = 140;
 
+        private int _currentIndex;
+
+        public T Current => _places[_currentIndex];
+
+        object IEnumerator.Current => _places[_currentIndex];
+
         public Aeroplane(int picWidth, int picHeight)
         {
             int width = picWidth / _placeSizeWidth;
@@ -29,6 +38,7 @@ namespace WindowsFormsPlane
             _maxCount = width * height;
             pictureWidth = picWidth;
             pictureHeight = picHeight;
+            _currentIndex = -1;
         }
 
         public static bool operator +(Aeroplane<T> a, T plane)
@@ -36,6 +46,10 @@ namespace WindowsFormsPlane
             if (a._places.Count >= a._maxCount)
             {
                 throw new AeroplaneOverflowException();
+            }
+            if (a._places.Contains(plane))
+            {
+                throw new AeroplaneAlreadyHaveException();
             }
             a._places.Add(plane);
             return true;
@@ -85,6 +99,33 @@ namespace WindowsFormsPlane
                 return null;
             }
             return _places[index];
+        }
+
+        public void Sort() => _places.Sort((IComparer<T>)new PlaneComparer());
+
+        public void Dispose()
+        {
+        }
+
+        public bool MoveNext()
+        {
+            _currentIndex++;
+            return (_currentIndex < _places.Count);
+        }
+
+        public void Reset()
+        {
+            _currentIndex = -1;
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return this;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this;
         }
     }
 }

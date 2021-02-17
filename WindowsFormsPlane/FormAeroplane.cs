@@ -108,7 +108,6 @@ namespace WindowsFormsPlane
                     MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     logger.Warn("Неизвестная ошибка");
                 }
-
             }
         }
 
@@ -147,6 +146,11 @@ namespace WindowsFormsPlane
                 {
                     MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     logger.Warn("Переполнение");
+                }
+                catch (AeroplaneAlreadyHaveException ex)
+                {
+                    MessageBox.Show(ex.Message, "Дублирование", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn("Дублирование");
                 }
                 catch (Exception ex)
                 {
@@ -191,6 +195,16 @@ namespace WindowsFormsPlane
                     MessageBox.Show(ex.Message, "Неизвестная ошибка при загрузки", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     logger.Warn("Неизвестная ошибка при загрузки");
                 }
+            }
+        }
+
+        private void buttonSort_Click(object sender, EventArgs e)
+        {
+            if (listBoxAeroplanes.SelectedIndex > -1)
+            {
+                aeroplaneCollection[listBoxAeroplanes.SelectedItem.ToString()].Sort();
+                Draw();
+                logger.Info("Сортировка уровней");
             }
         }
     }

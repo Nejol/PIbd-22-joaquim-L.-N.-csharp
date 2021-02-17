@@ -45,6 +45,8 @@
             this.загрузитьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.buttonSort = new System.Windows.Forms.Button();
+
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAeroplane)).BeginInit();
             this.groupBoxPlane.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -60,7 +62,7 @@
             // 
             // buttonSetPlane
             // 
-            this.buttonSetPlane.Location = new System.Drawing.Point(1108, 466);
+            this.buttonSetPlane.Location = new System.Drawing.Point(1108, 499);
             this.buttonSetPlane.Name = "buttonSetPlane";
             this.buttonSetPlane.Size = new System.Drawing.Size(190, 36);
             this.buttonSetPlane.TabIndex = 1;
@@ -194,11 +196,22 @@
             this.openFileDialog.FileName = "openFileDialog";
             this.openFileDialog.Filter = "txt file | *.txt";
             // 
+            // buttonSort
+            // 
+            this.buttonSort.Location = new System.Drawing.Point(1108, 436);
+            this.buttonSort.Name = "buttonSort";
+            this.buttonSort.Size = new System.Drawing.Size(190, 35);
+            this.buttonSort.TabIndex = 10;
+            this.buttonSort.Text = "Соритровать";
+            this.buttonSort.UseVisualStyleBackColor = true;
+            this.buttonSort.Click += new System.EventHandler(this.buttonSort_Click);
+            // 
             // FormAeroplane
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 749);
+            this.Controls.Add(this.buttonSort);
             this.Controls.Add(this.buttonDeleteAeroplane);
             this.Controls.Add(this.listBoxAeroplanes);
             this.Controls.Add(this.buttonAddAeroplane);
@@ -218,7 +231,6 @@
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
@@ -240,5 +252,6 @@
         private System.Windows.Forms.ToolStripMenuItem загрузитьToolStripMenuItem1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.Button buttonSort;
     }
 }

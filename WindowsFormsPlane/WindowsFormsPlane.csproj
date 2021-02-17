@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aeroplane.cs" />
+    <Compile Include="AeroplaneAlreadyHaveException.cs" />
     <Compile Include="AeroplaneCollection.cs" />
     <Compile Include="AeroplaneNotFoundException.cs" />
     <Compile Include="AeroplaneOverflowException.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="FormPlaneConfig.Designer.cs">
       <DependentUpon>FormPlaneConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlaneComparer.cs" />
     <Compile Include="Vehicle.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="FormPlane.cs">
