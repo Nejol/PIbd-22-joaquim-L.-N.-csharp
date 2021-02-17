@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsPlane
 {
+
     public class Aeroplane<T> : IEnumerator<T>, IEnumerable<T> where T : class, ITransport
+    
     {
         private readonly List<T> _places;
 

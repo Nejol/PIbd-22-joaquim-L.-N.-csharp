@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsPlane
 {
+
     public class Warplane : Plane, IEquatable<Warplane>
     {
         public Color DopColor { private set; get; }
@@ -37,7 +38,6 @@ namespace WindowsFormsPlane
                 Foguete = Convert.ToBoolean(strs[5]);
             }
         }
-
 
         public override void DrawTransport(Graphics g)
         {

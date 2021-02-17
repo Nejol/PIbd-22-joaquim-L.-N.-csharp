@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsPlane
 {
+
     public class Plane : Vehicle, IEquatable<Plane>
     {
         protected readonly int planeWidth = 90;      

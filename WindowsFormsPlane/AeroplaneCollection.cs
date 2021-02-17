@@ -145,7 +145,6 @@ namespace WindowsFormsPlane
                         {
                             throw new NullReferenceException();
                         }
-
                         line = sr.ReadLine();
                     }
                 }

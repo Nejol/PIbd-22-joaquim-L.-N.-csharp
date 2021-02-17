@@ -108,7 +108,6 @@ namespace WindowsFormsPlane
                     MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     logger.Warn("Неизвестная ошибка");
                 }
-
             }
         }
 
